@@ -2,7 +2,6 @@ package br.com.sigabem.frete.controller.regras;
 
 import br.com.sigabem.frete.controller.request.FreteRequest;
 import br.com.sigabem.frete.controller.response.CepResponse;
-import br.com.sigabem.frete.controller.response.CepResponseDestino;
 import br.com.sigabem.frete.controller.response.FreteResponse;
 import lombok.*;
 
@@ -54,12 +53,12 @@ public class Regras {
                 .build();
     }
 
-    private static Regras converteUfDDDDestinoToRegras(CepResponseDestino cepResponseDestino){
-        return Regras.builder()
-                .ufDestino(cepResponseDestino.getUf())
-                .dddDestino(cepResponseDestino.getDdd())
-                .build();
-    }
+//    private static Regras converteUfDDDDestinoToRegras(CepResponseDestino cepResponseDestino){
+//        return Regras.builder()
+//                .ufDestino(cepResponseDestino.getUf())
+//                .dddDestino(cepResponseDestino.getDdd())
+//                .build();
+//    }
 
     private static Regras converteVlTotalToRegras(FreteResponse freteResponse){
         return Regras.builder()

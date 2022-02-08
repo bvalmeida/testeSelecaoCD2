@@ -2,7 +2,6 @@ package br.com.sigabem.frete.model;
 
 import br.com.sigabem.frete.controller.request.FreteRequest;
 import br.com.sigabem.frete.controller.response.CepResponse;
-import br.com.sigabem.frete.controller.response.CepResponseDestino;
 import br.com.sigabem.frete.controller.response.FreteResponse;
 import lombok.*;
 import javax.persistence.*;
@@ -31,17 +30,17 @@ public class FreteEntity {
 
 
 
-    public static CepResponse converteCepOrigemEntityToCepResponse(FreteEntity freteEntity){
-        return CepResponse.builder()
-                .cepOrigem(freteEntity.getCepOrigem())
-                .build();
-    }
+//    public static CepResponse converteCepOrigemEntityToCepResponse(FreteEntity freteEntity){
+//        return CepResponse.builder()
+//                .cepOrigem(freteEntity.getCepOrigem())
+//                .build();
+//    }
 
-    public static CepResponseDestino converteCepOrigemEntityToCepResponseDestino(FreteEntity freteEntity){
-        return CepResponseDestino.builder()
-                .cepDestino(freteEntity.getCepDestino())
-                .build();
-    }
+ //   public static CepResponseDestino converteCepOrigemEntityToCepResponseDestino(FreteEntity freteEntity){
+//        return CepResponseDestino.builder()
+//                .cepDestino(freteEntity.getCepDestino())
+//                .build();
+//    }
 
 
     public static FreteResponse converteEntityToFreteResponse(FreteEntity freteEntity){

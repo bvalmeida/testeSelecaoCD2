@@ -2,7 +2,6 @@ package br.com.sigabem.frete.service.frete;
 
 import br.com.sigabem.frete.controller.request.FreteRequest;
 import br.com.sigabem.frete.controller.response.CepResponse;
-import br.com.sigabem.frete.controller.response.CepResponseDestino;
 import br.com.sigabem.frete.controller.response.FreteResponse;
 import br.com.sigabem.frete.model.FreteEntity;
 import br.com.sigabem.frete.repository.FreteRepository;
@@ -27,8 +26,13 @@ public class FreteServiceImpl implements FreteService {
 
     @Override
     public void addFrete(FreteRequest freteRequest) {
-        new FreteEntity();
-        this.freteRepository.save(FreteEntity.converteFreteRequestToEntity(freteRequest));
+        //       new FreteEntity();
+        FreteEntity freteEntity = this.freteRepository.save(FreteEntity.converteFreteRequestToEntity(freteRequest));
+        if (freteEntity != null) {
+            CepResponse cepResponseOrigem = this.consumirApiOrigem(freteRequest.getCepOrigem());
+            CepResponse cepResponseDestino = this.consumirApiOrigem(freteRequest.getCepDestino());
+
+        }
     }
 
     @Override
@@ -49,22 +53,13 @@ public class FreteServiceImpl implements FreteService {
     }
 
     @Override
-    public CepResponse consumirApiOrigem(CepResponse cepResponse) {
+    public CepResponse consumirApiOrigem(String cep) {
         UriComponents uriComponents = UriComponentsBuilder.newInstance()
                 .scheme("https")
                 .host("viacep.com.br/ws")
-                .path(cepResponse.getCepOrigem() + "/json")
+                .path(cep + "/json")
                 .build();
         return restTemplate.getForObject(uriComponents.toUriString(), CepResponse.class);
     }
 
-    @Override
-    public CepResponseDestino consumirApiDestino(CepResponseDestino cepResponseDestino) {
-        UriComponents uriComponents = UriComponentsBuilder.newInstance()
-                .scheme("https")
-                .host("viacep.com.br/ws")
-                .path(cepResponseDestino.getCepDestino() + "/json")
-                .build();
-        return restTemplate.getForObject(uriComponents.toUriString(), CepResponseDestino.class);
-    }
 }

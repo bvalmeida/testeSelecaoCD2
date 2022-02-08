@@ -14,8 +14,8 @@ public class CepResponse {
 
     private String ddd;
     private String uf;
-    private String cep;
-    private String cepOrigem;
+
+
 
 
 }
